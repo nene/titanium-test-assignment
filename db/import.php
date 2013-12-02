@@ -34,13 +34,14 @@ class CsvReader
      * Opens a file and passes its handle to given callback.  After the
      * latter finishes, closes the file and returns the value returned by
      * callback.
+     *
+     * Exits with an exception when file can't be read.
      */
     private function withOpenFile($filename, callable $callback)
     {
         $handle = fopen($filename, "r");
         if ($handle === false) {
-            echo "Unable to read file: $filename\n";
-            exit(1);
+            throw new Exception("CsvReader: Unable to read file: $filename");
         }
 
         $result = $callback($handle);
