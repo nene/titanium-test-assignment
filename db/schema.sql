@@ -9,7 +9,8 @@ CREATE TABLE cities (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     country_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (country_id) REFERENCES countries(id)
+    FOREIGN KEY (country_id) REFERENCES countries(id),
+    UNIQUE KEY (country_id, name)
 ) ENGINE = INNODB, CHARACTER SET = utf8, COLLATE = utf8_general_ci;
 
 CREATE TABLE car_types (
