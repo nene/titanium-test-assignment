@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <!-- MS Word on Windows doesn't realise the encoding is UTF-8 unless this meta tag is present -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Esimene etapp</title>
+        <style>
+            body, p, td, table, tr, .bodytext, .stepfield {
+	            font-family: Arial, Helvetica, FreeSans, sans-serif;
+            }
+            .panel {
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid #999;
+                background-color: #f0f0f0;
+            }
+            .noteMacro { border-style: solid; border-width: 1px; border-color: #F0C000; background-color: #FFFFCE; text-align:left;}
+            .warningMacro { border-style: solid; border-width: 1px; border-color: #c00; background-color: #fcc; text-align:left;}
+            .infoMacro { border-style: solid; border-width: 1px; border-color: #69c; background-color: #D8E4F1; text-align:left;}
+            .tipMacro { border-style: solid; border-width: 1px; border-color: #090; background-color: #dfd; text-align:left;}
+            .informationMacroPadding { padding: 5px 0 0 5px; }
+
+            table.infoMacro td, table.warningMacro td, table.tipMacro td, table.noteMacro td, table.sectionMacro td {
+                border: none;
+            }
+
+            .grid {
+                margin: 2px 0px 5px 0px;
+                border-collapse: collapse;
+            }
+            .grid th  {
+                border: 1px solid #ccc;
+                padding: 2px 4px 2px 4px;
+                background: #f0f0f0;
+                text-align: center;
+            }
+            .grid td  {
+                border: 1px solid #ccc;
+                padding: 3px 4px 3px 4px;
+            }
+        </style>
+    </head>
+
+    <body style="background-color: white; padding: 10px;">
+        <h1>Esimene etapp</h1>
+        <p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1368000374928 {padding: 0px;}
+div.rbtoc1368000374928 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1368000374928 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc rbtoc1368000374928'>
+<ul class='toc-indentation'>
+<li><a href='#Esimeneetapp-Andmed'>Andmed</a></li>
+<li><a href='#Esimeneetapp-Andmebaas'>Andmebaas</a></li>
+<li><a href='#Esimeneetapp-Ülesanne'>&Uuml;lesanne</a></li>
+<li><a href='#Esimeneetapp-Midahindame?'>Mida hindame?</a></li>
+</ul>
+</div></p><h1 id="Esimeneetapp-Andmed">Andmed</h1><p>Andmed on kahes failis:</p><ul><li>a.csv</li><li>b.csv</li></ul><p>Andmed kujul: &quot;Riik&quot;;&quot;Linn&quot;;&quot;Auto tüüp&quot;;hind naeltes</p><p><a href="attach_e6114acb8eae362b770697a553ac7a41">Andmed.zip</a></p><h1 id="Esimeneetapp-Andmebaas">Andmebaas</h1><p>Luua sobiva struktuuriga andmebaas andmete jaoks ning seejärel importida andmed. Andmebaasi struktuur peab olema optimaalne ning ei tohi sisaldada üleliigset informatsiooni.</p><p>Andmebaasina kasutada MySQL'i alates versioonist 5.0</p><h1 id="Esimeneetapp-Ülesanne">Ülesanne</h1><p>Luua veebiteenus autode otsingu tegemiseks üle XML-i. Teenusele tuleb päring saata POST-iga. XML-i parsimiseks kasutage SimpleXML-i.</p><p>Tuleb eeldada, et teenusele lisatakse hiljem uusi päringuid ning tegemist on suurema projekti aluspõhjaga.</p><p>
+
+<map id="gliffy-map-2818295-2040" name="gliffy-map-2818295-2040"></map>
+<table width="100%" class="gliffy-macro-table">
+    <tr>
+        <td >
+            <table class="gliffy-macro-inner-table">
+                <caption align="bottom">
+                                    </caption>
+                <tr>
+                    <td>
+                        <img style="border: none; width: 487px; height: 1px;"
+                                                          usemap="#gliffy-map-2818295-2040"
+                                                          src="/download/attachments/2753924/Architecture.png?version=1&amp;modificationDate=1367915013000&amp;api=v2"
+                             alt=""
+                             class="gliffy-macro-image"/>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+</p><p> Sisend: XML riigi nimega:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;SearchCarRQ&gt;
+    &lt;Country name=&#39;Austria&#39;&gt;
+        &lt;City&gt;Linz&lt;/City&gt;
+        &lt;City&gt;Salzburg&lt;/City&gt;
+    &lt;/Country&gt;
+    &lt;Country name=&#39;Portugal&#39;&gt;
+        &lt;City&gt;Faro&lt;/City&gt;
+    &lt;/Country&gt;
+&lt;/SearchCarRQ&gt;</pre>
+</div></div><p>Väljundiks on igas riigis oleva linna viis kõige odavamat autot sorteerituna hinna järgi kasvavalt.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;SearchCarRS&gt;
+    &lt;Country name=&#39;Austria&#39;&gt;
+        &lt;City name=&#39;Linz&#39;&gt;
+            &lt;Car price=&#39;34.33&#39;&gt;BMW X3&lt;/Car&gt;
+            &lt;Car price=&#39;34.34&#39;&gt;Opel Zafira&lt;/Car&gt;
+            &lt;Car price=&#39;34.40&#39;&gt;Renault Laguna&lt;/Car&gt;
+            &lt;Car price=&#39;35.00&#39;&gt;Volvo S40&lt;/Car&gt;
+            &lt;Car price=&#39;40.00&#39;&gt;Mercedes-Benz E Class&lt;/Car&gt;
+        &lt;/City&gt;
+        &lt;City name=&#39;Salzburg&#39;&gt;
+            &lt;Car price=&#39;31.03&#39;&gt;Opel Zafira&lt;/Car&gt;
+            &lt;Car price=&#39;32.00&#39;&gt;Skoda Octavia&lt;/Car&gt;
+            &lt;Car price=&#39;35.23&#39;&gt;Volkswagen Lupo&lt;/Car&gt;
+            &lt;Car price=&#39;47.12&#39;&gt;Fiat Panda&lt;/Car&gt;
+            &lt;Car price=&#39;49.11&#39;&gt;Fiat Bravo&lt;/Car&gt;
+        &lt;/City&gt;
+    &lt;/Country&gt;
+    &lt;Country name=&#39;Portugal&#39;&gt;
+        &lt;City name=&#39;Faro&#39;&gt;
+            &lt;Car price=&#39;40.12&#39;&gt;BMW Z4 Coupe&lt;/Car&gt;
+            &lt;Car price=&#39;42.12&#39;&gt;BMW X3&lt;/Car&gt;
+            &lt;Car price=&#39;43.00&#39;&gt;Opel Astra&lt;/Car&gt;
+            &lt;Car price=&#39;45.23&#39;&gt;Volvo S40&lt;/Car&gt;
+            &lt;Car price=&#39;50.00&#39;&gt;Skoda Octavia&lt;/Car&gt;
+        &lt;/City&gt;
+    &lt;/Country&gt;
+&lt;/SearchCarRS&gt;</pre>
+</div></div><p>Nõuded:</p><ul><li>Kasutajaliidest ei ole vaja teha</li><li>POST päringu teeb kolmas osapool ning väljundiks peab olema puhas XML (UTF-8: Content-type: text/xml;charset=utf8)</li><li>Vajalik on veatöötlus vigase XML päringu korral</li><li>Lahendusega tuleb kaasa panna andmebaasi koopia (MySQL dump) - andmebaasi loomise SQL-i ei või &quot;dump&quot; sisaldada.</li></ul><h1 id="Esimeneetapp-Midahindame?">Mida hindame?</h1><ul><li>Andmebaasi struktuur. Kogu info panemine ühte tabelisse ei ole lahendus, mida ootame <strong>5p</strong></li><li>OOP lähenemine. Staatiliste funktsioonide koondamine klassidesse ei ole lahendus, mida ootame. Kasutada tuleb PHP 5 süntaksit <strong>5p</strong></li><li>Laiendatavus (uute teenuste jaoks. Näiteks CityListRQ jne) <strong>3p</strong></li><li>Koodi kommenteeritus ning kodeerimisstandardid (ühtne stiil kommenteerimiseks ning koodi kirjutamiseks). <strong>2p</strong></li><li>Korrektset lahendust (rakendus oskab vastavalt päringule väljastada korrektse tulemuse) <strong>4p</strong></li><li>Rakenduse kiirus (arvutid on küll erinevad, kuid meie testserveris peaksid olema keskmine päringu kiirus vähemalt 0.05 sekundit) <strong>2p</strong></li><li>Projekti struktuur <strong>2p</strong></li><li>Lahendusega kaasas installeerimisjuhend <strong>2p</strong></li></ul><p>Kokku: <strong>25</strong><strong>p</strong></p><p><strong>Kasuks tuleb:</strong></p><ul><li>Arhitektuuri kirjeldus</li><li>Unit Testid (PHPUnit, SimpleTest...)</li></ul>
+    </body>
+</html>
