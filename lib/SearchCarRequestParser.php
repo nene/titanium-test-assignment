@@ -8,12 +8,12 @@ class SearchCarRequestParser
 
         foreach ($xmlElement->Country as $countryElement) {
             $country = [
-                'name' => $countryElement['name'],
+                'name' => (string)$countryElement['name'],
                 'cities' => [],
             ];
 
             foreach ($countryElement->City as $cityName) {
-                $country['cities'][]= $cityName;
+                $country['cities'][]= (string)$cityName;
             }
 
             $countries[]= $country;

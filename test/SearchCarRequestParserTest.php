@@ -31,15 +31,15 @@ class SearchCarRequestParserTest extends PHPUnit_Framework_TestCase
         ");
 
         $this->assertEquals(2, count($countries));
-        $this->assertEquals('Austria', $countries[0]['name']);
-        $this->assertEquals('Portugal', $countries[1]['name']);
+        $this->assertSame('Austria', $countries[0]['name']);
+        $this->assertSame('Portugal', $countries[1]['name']);
 
         $this->assertEquals(2, count($countries[0]['cities']));
-        $this->assertEquals('Linz', $countries[0]['cities'][0]);
-        $this->assertEquals('Salzburg', $countries[0]['cities'][1]);
+        $this->assertSame('Linz', $countries[0]['cities'][0]);
+        $this->assertSame('Salzburg', $countries[0]['cities'][1]);
 
         $this->assertEquals(1, count($countries[1]['cities']));
-        $this->assertEquals('Faro', $countries[1]['cities'][0]);
+        $this->assertSame('Faro', $countries[1]['cities'][0]);
     }
 
     function testEmptyRoot()
