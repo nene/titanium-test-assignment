@@ -6,19 +6,27 @@ require_once 'SearchCarRequestParser.php';
 require_once 'SearchCarQuery.php';
 require_once 'PriceQuery.php';
 require_once 'SearchCarResponse.php';
+require_once 'ErrorResponse.php';
 
-$xml = $_POST["query"];
 
-$xmlElement = new SimpleXMLElement($xml);
+try {
+    $xml = $_POST["query"];
 
-$validator = new SearchCarRequestValidator(new XmlValidator());
-$validator->validate($xmlElement);
+    // avoid PHP warnings - we're catching the exception anyway.
+    $xmlElement = @(new SimpleXMLElement($xml));
 
-$parser = new SearchCarRequestParser();
-$query = $parser->parse($xmlElement);
+    $validator = new SearchCarRequestValidator(new XmlValidator());
+    $validator->validate($xmlElement);
 
-$db = new PDO("mysql:host=localhost;dbname=car_prices", "nene", "");
-$searchCarQuery = new SearchCarQuery(new PriceQuery($db));
-$response = $searchCarQuery->query($query);
+    $parser = new SearchCarRequestParser();
+    $query = $parser->parse($xmlElement);
 
-echo (new SearchCarResponse())->toXml($response);
+    $db = new PDO("mysql:host=localhost;dbname=car_prices", "nene", "");
+    $searchCarQuery = new SearchCarQuery(new PriceQuery($db));
+    $response = $searchCarQuery->query($query);
+
+    echo (new SearchCarResponse())->toXml($response);
+}
+catch (Exception $e) {
+    echo (new ErrorResponse())->toXml($e);
+}
