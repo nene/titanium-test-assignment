@@ -1,7 +1,21 @@
 <?php
 
+/**
+ * Transforms SearchCarRequest XML into simple array with structure:
+ *
+ *     [
+ *         ["name" => "Austria", "cities" => ["Linz", "Salzburg"]],
+ *         ["name" => "Portugal", "cities" => ["faro"]],
+ *     ]
+ *
+ */
 class SearchCarRequestParser
 {
+    /**
+     * Does the parsing.
+     * @param {SimpleXMLElement} $xmlElement
+     * @return {array}
+     */
     function parse($xmlElement)
     {
         $countries = [];
