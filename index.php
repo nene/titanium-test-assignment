@@ -5,6 +5,7 @@ require_once 'SearchCarRequestValidator.php';
 require_once 'SearchCarRequestParser.php';
 require_once 'SearchCarQuery.php';
 require_once 'PriceQuery.php';
+require_once 'SearchCarResponse.php';
 
 $xml = "
 <SearchCarRQ>
@@ -30,5 +31,8 @@ print_r($query);
 
 $db = new PDO("mysql:host=localhost;dbname=car_prices", "nene", "");
 $searchCarQuery = new SearchCarQuery(new PriceQuery($db));
+$response = $searchCarQuery->query($query);
 
-print_r($searchCarQuery->query($query));
+print_r($response);
+
+echo (new SearchCarResponse())->toXml($response);
