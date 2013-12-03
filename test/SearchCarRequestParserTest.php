@@ -42,27 +42,4 @@ class SearchCarRequestParserTest extends PHPUnit_Framework_TestCase
         $this->assertSame('Faro', $countries[1]['cities'][0]);
     }
 
-    function testEmptyRoot()
-    {
-        $countries = $this->parse("
-            <SearchCarRQ>
-            </SearchCarRQ>
-        ");
-
-        $this->assertEquals(0, count($countries));
-    }
-
-    function testEmptyCountry()
-    {
-        $countries = $this->parse("
-            <SearchCarRQ>
-                <Country name='Austria'>
-                </Country>
-            </SearchCarRQ>
-        ");
-
-        $this->assertEquals(1, count($countries));
-        $this->assertEquals(0, count($countries[0]['cities']));
-    }
-
 }
