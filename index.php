@@ -7,12 +7,12 @@ require_once 'SearchCarQuery.php';
 require_once 'PriceQuery.php';
 require_once 'SearchCarResponse.php';
 require_once 'ErrorResponse.php';
+require_once 'DbFactory.php';
 
+// initialization
 $validator = new SearchCarRequestValidator(new XmlValidator());
 $parser = new SearchCarRequestParser();
-
-$db = new PDO("mysql:host=localhost;dbname=car_prices", "nene", "");
-$searchCarQuery = new SearchCarQuery(new PriceQuery($db));
+$searchCarQuery = new SearchCarQuery(new PriceQuery(DbFactory::create()));
 
 try {
     $xml = $_POST["query"];
