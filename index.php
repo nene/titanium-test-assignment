@@ -8,6 +8,11 @@ require_once 'PriceQuery.php';
 require_once 'SearchCarResponse.php';
 require_once 'ErrorResponse.php';
 
+$validator = new SearchCarRequestValidator(new XmlValidator());
+$parser = new SearchCarRequestParser();
+
+$db = new PDO("mysql:host=localhost;dbname=car_prices", "nene", "");
+$searchCarQuery = new SearchCarQuery(new PriceQuery($db));
 
 try {
     $xml = $_POST["query"];
@@ -15,14 +20,10 @@ try {
     // avoid PHP warnings - we're catching the exception anyway.
     $xmlElement = @(new SimpleXMLElement($xml));
 
-    $validator = new SearchCarRequestValidator(new XmlValidator());
     $validator->validate($xmlElement);
 
-    $parser = new SearchCarRequestParser();
     $query = $parser->parse($xmlElement);
 
-    $db = new PDO("mysql:host=localhost;dbname=car_prices", "nene", "");
-    $searchCarQuery = new SearchCarQuery(new PriceQuery($db));
     $response = $searchCarQuery->query($query);
 
     echo (new SearchCarResponse())->toXml($response);
