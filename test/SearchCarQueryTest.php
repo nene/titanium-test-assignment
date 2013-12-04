@@ -2,7 +2,8 @@
 set_include_path(dirname(dirname(__FILE__)) . '/lib');
 require_once 'SearchCarQuery.php';
 
-class PriceQueryStub {
+class PriceQueryStub
+{
     private $result;
 
     function __construct($result)

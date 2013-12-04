@@ -69,7 +69,8 @@ class XmlValidator
         }
     }
 
-    private function validateAttributes($el, $attributes, $schema) {
+    private function validateAttributes($el, $attributes, $schema)
+    {
         $attributesFound = [];
 
         foreach ($attributes as $attr) {
@@ -96,7 +97,8 @@ class XmlValidator
         }
     }
 
-    private function validateChildren($el, $children, $schema) {
+    private function validateChildren($el, $children, $schema)
+    {
         $childrenFound = [];
 
         foreach ($children as $child) {
@@ -129,7 +131,8 @@ class XmlValidator
     }
 
     // retrieves sub-schema for given element/attribute name
-    private function getSubSchema($schema, $name) {
+    private function getSubSchema($schema, $name)
+    {
         foreach ($schema as $child) {
             if ($child['name'] === $name) {
                 return $child;

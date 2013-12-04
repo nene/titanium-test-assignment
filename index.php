@@ -13,7 +13,8 @@ require_once 'DbFactory.php';
 // correct heading for both success and error XML responses.
 header("Content-type: text/xml; charset=utf8");
 
-function handleSearchCarRq($xmlElement) {
+function handleSearchCarRq($xmlElement)
+{
     // initialization
     $validator = new SearchCarRequestValidator(new XmlValidator());
     $parser = new SearchCarRequestParser();
