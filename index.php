@@ -9,10 +9,18 @@ require_once 'SearchCarResponse.php';
 require_once 'ErrorResponse.php';
 require_once 'DbFactory.php';
 
-// initialization
-$validator = new SearchCarRequestValidator(new XmlValidator());
-$parser = new SearchCarRequestParser();
-$searchCarQuery = new SearchCarQuery(new PriceQuery(DbFactory::create()));
+function handleSearchCarRq($xmlElement) {
+    // initialization
+    $validator = new SearchCarRequestValidator(new XmlValidator());
+    $parser = new SearchCarRequestParser();
+    $searchCarQuery = new SearchCarQuery(new PriceQuery(DbFactory::create()));
+
+    // actual work
+    $validator->validate($xmlElement);
+    $query = $parser->parse($xmlElement);
+    $response = $searchCarQuery->query($query);
+    return (new SearchCarResponse())->toXml($response);
+}
 
 try {
     $xml = $_POST["query"];
@@ -20,13 +28,13 @@ try {
     // avoid PHP warnings - we're catching the exception anyway.
     $xmlElement = @(new SimpleXMLElement($xml));
 
-    $validator->validate($xmlElement);
-
-    $query = $parser->parse($xmlElement);
-
-    $response = $searchCarQuery->query($query);
-
-    echo (new SearchCarResponse())->toXml($response);
+    // here we can possibly handle several different request types.
+    if ($xmlElement->getName() == "SearchCarRQ") {
+        echo handleSearchCarRq($xmlElement);
+    }
+    else {
+        throw new Exception("Unknown XML request type: {$xmlElement->getName()}");
+    }
 }
 catch (Exception $e) {
     echo (new ErrorResponse())->toXml($e);
