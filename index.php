@@ -19,9 +19,9 @@ try {
 
     // set up objects possibly used in all queries
     $xmlValidator = new XmlValidator();
-    $db = DbFactory::create();
+    $db = DbFactory::createFrom(dirname(__FILE__) . "/db-config.ini");
 
-    // here we switch by different request types
+    // switch by different request types
     if ($xmlElement->getName() == "SearchCarRQ") {
         $task = new SearchCar_Task($xmlValidator, $db);
     }

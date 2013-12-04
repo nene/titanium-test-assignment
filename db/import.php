@@ -20,7 +20,7 @@ foreach ($filenames as $fname) {
     $data = array_merge($data, (new CsvReader())->read($fname));
 }
 
-$db = DbFactory::create();
+$db = DbFactory::createFrom(dirname(dirname(__FILE__)) . "/db-config.ini");
 
 (new CarPricesImporter($db))->import($data);
 
