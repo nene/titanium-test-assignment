@@ -19,7 +19,7 @@ function handleSearchCarRq($xmlElement) {
     $validator->validate($xmlElement);
     $query = $parser->parse($xmlElement);
     $response = $searchCarQuery->query($query);
-    return (new SearchCarResponse())->toXml($response);
+    return (new SearchCarResponse($response))->toXml();
 }
 
 try {
@@ -39,5 +39,5 @@ try {
     }
 }
 catch (Exception $e) {
-    echo (new ErrorResponse())->toXml($e);
+    echo (new ErrorResponse($e))->toXml();
 }

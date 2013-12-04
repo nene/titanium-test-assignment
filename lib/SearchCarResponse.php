@@ -5,16 +5,26 @@
  */
 class SearchCarResponse
 {
+    private $countries;
+
     /**
-     * Converts nested array into XML string.
+     * Initializes with the response data structure.
      * @param {array} $countries
+     */
+    function __construct($countries)
+    {
+        $this->countries = $countries;
+    }
+
+    /**
+     * Returns the response data as XML string.
      * @return {string} XML
      */
-    function toXml($countries)
+    function toXml()
     {
         $root = new SimpleXMLElement("<SearchCarRS></SearchCarRS>");
 
-        foreach ($countries as $country) {
+        foreach ($this->countries as $country) {
             $countryEl = $root->addChild("Country");
             $countryEl->addAttribute("name", $country["name"]);
 

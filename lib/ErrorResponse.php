@@ -6,15 +6,25 @@
  */
 class ErrorResponse
 {
+    private $exception;
+
     /**
-     * Converts exception into XML.
+     * Initializes with an exception.
      * @param {Exception} $exception
+     */
+    function __construct($exception)
+    {
+        $this->exception = $exception;
+    }
+
+    /**
+     * Returns the exception data as XML string.
      * @return {string} XML
      */
-    function toXml($exception)
+    function toXml()
     {
         $error = new SimpleXMLElement("<Error></Error>");
-        $error->addChild("Msg", $exception->getMessage());
+        $error->addChild("Msg", $this->exception->getMessage());
         return $error->asXML();
     }
 }
