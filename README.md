@@ -18,7 +18,7 @@ ei tohiks olla, seega teoorias peaks PHP 5.4 peal jooksma.
 
 Kopeeri repositoorium:
 
-    git clone git@github.com:nene/titanium-test-assignment.git
+    git clone https://github.com/nene/titanium-test-assignment.git
     cd titanium-test-assignment/
 
 Loo uus MySQL-i andmebaas (näiteks nimega `car_prices`).
