@@ -9,6 +9,10 @@ require_once 'SearchCarResponse.php';
 require_once 'ErrorResponse.php';
 require_once 'DbFactory.php';
 
+// XML is the only possibly response from this script, so set the
+// correct heading for both success and error XML responses.
+header("Content-type: text/xml; charset=utf8");
+
 function handleSearchCarRq($xmlElement) {
     // initialization
     $validator = new SearchCarRequestValidator(new XmlValidator());
