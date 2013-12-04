@@ -112,7 +112,7 @@ kirjeldav XML.  Näiteks vigase XML-i korral:
 
 Päringu XML-i struktuuri kontrollitakse rangelt.  `<SearchCarRQ>` peab
 sisaldama 1 või rohkem `<Country>` elementi, mis peab sisaldama 1 või
-rohkem `<City>` elementi jne.  Seega, soovides mõne maa riigi mitte
+rohkem `<City>` elementi jne.  Seega, soovides mõne riigi kohta mitte
 päringut sooritada, tuleb vastav `<Country>` element ära jätta, mitte
 näiteks saata tühi element.
 
