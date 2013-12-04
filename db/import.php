@@ -70,7 +70,7 @@ class CsvReader
                 foreach ($columnNames as $i => $name) {
                     $row[$name] = $cols[$i];
                 }
-                array_push($rows, $row);
+                $rows[]= $row;
             }
         }
 
