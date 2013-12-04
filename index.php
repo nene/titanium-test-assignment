@@ -23,10 +23,12 @@ function handleSearchCarRq($xmlElement) {
 }
 
 try {
-    $xml = $_POST["query"];
+    if (!isset($_POST["query"])) {
+        throw new Exception("HTTP POST is missing 'query' parameter");
+    }
 
     // avoid PHP warnings - we're catching the exception anyway.
-    $xmlElement = @(new SimpleXMLElement($xml));
+    $xmlElement = @(new SimpleXMLElement($_POST["query"]));
 
     // here we can possibly handle several different request types.
     if ($xmlElement->getName() == "SearchCarRQ") {
