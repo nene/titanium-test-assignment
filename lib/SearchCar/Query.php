@@ -33,13 +33,13 @@
  *         ],
  *     ]
  */
-class SearchCarQuery
+class SearchCar_Query
 {
     private $priceQuery;
 
     /**
      * Initialized with PriceQuery object.
-     * @param {PriceQuery} $priceQuery
+     * @param {SearchCar_PriceQuery} $priceQuery
      */
     function __construct($priceQuery)
     {

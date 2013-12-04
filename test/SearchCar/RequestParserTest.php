@@ -1,16 +1,16 @@
 <?php
-set_include_path(dirname(dirname(__FILE__)) . '/lib');
-require_once 'SearchCarRequestParser.php';
+set_include_path(dirname(dirname(dirname(__FILE__))) . '/lib');
+require_once 'SearchCar/RequestParser.php';
 
 
-class SearchCarRequestParserTest extends PHPUnit_Framework_TestCase
+class SearchCar_RequestParserTest extends PHPUnit_Framework_TestCase
 {
 
     function parse($xml)
     {
         $xmlElement = new SimpleXMLElement($xml);
 
-        return (new SearchCarRequestParser())->parse($xmlElement);
+        return (new SearchCar_RequestParser())->parse($xmlElement);
     }
 
     // here we're only testing happy paths, because the input to the

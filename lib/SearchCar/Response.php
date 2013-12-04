@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Transforms SearchCarResponse data structure into XML.
+ * Transforms SearchCar response data structure into XML.
  */
-class SearchCarResponse
+class SearchCar_Response
 {
     private $countries;
 

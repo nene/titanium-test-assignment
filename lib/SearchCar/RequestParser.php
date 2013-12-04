@@ -9,7 +9,7 @@
  *     ]
  *
  */
-class SearchCarRequestParser
+class SearchCar_RequestParser
 {
     /**
      * Does the parsing.

@@ -1,11 +1,11 @@
 <?php
 set_include_path(dirname(__FILE__) . '/lib');
 require_once 'XmlValidator.php';
-require_once 'SearchCarRequestValidator.php';
-require_once 'SearchCarRequestParser.php';
-require_once 'SearchCarQuery.php';
-require_once 'PriceQuery.php';
-require_once 'SearchCarResponse.php';
+require_once 'SearchCar/RequestValidator.php';
+require_once 'SearchCar/RequestParser.php';
+require_once 'SearchCar/Query.php';
+require_once 'SearchCar/PriceQuery.php';
+require_once 'SearchCar/Response.php';
 require_once 'ErrorResponse.php';
 require_once 'DbFactory.php';
 
@@ -16,15 +16,15 @@ header("Content-type: text/xml; charset=utf8");
 function handleSearchCarRq($xmlElement)
 {
     // initialization
-    $validator = new SearchCarRequestValidator(new XmlValidator());
-    $parser = new SearchCarRequestParser();
-    $searchCarQuery = new SearchCarQuery(new PriceQuery(DbFactory::create()));
+    $validator = new SearchCar_RequestValidator(new XmlValidator());
+    $parser = new SearchCar_RequestParser();
+    $searchCarQuery = new SearchCar_Query(new SearchCar_PriceQuery(DbFactory::create()));
 
     // actual work
     $validator->validate($xmlElement);
     $query = $parser->parse($xmlElement);
     $response = $searchCarQuery->query($query);
-    return (new SearchCarResponse($response))->toXml();
+    return (new SearchCar_Response($response))->toXml();
 }
 
 try {

@@ -1,6 +1,6 @@
 <?php
-set_include_path(dirname(dirname(__FILE__)) . '/lib');
-require_once 'SearchCarQuery.php';
+set_include_path(dirname(dirname(dirname(__FILE__))) . '/lib');
+require_once 'SearchCar/Query.php';
 
 class PriceQueryStub
 {
@@ -18,7 +18,7 @@ class PriceQueryStub
 }
 
 
-class SearchCarQueryTest extends PHPUnit_Framework_TestCase
+class SearchCar_QueryTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
@@ -30,7 +30,7 @@ class SearchCarQueryTest extends PHPUnit_Framework_TestCase
 
         $priceQuery = new PriceQueryStub($this->cars);
 
-        $this->query = new SearchCarQuery($priceQuery);
+        $this->query = new SearchCar_Query($priceQuery);
     }
 
     function testSimpleExample()

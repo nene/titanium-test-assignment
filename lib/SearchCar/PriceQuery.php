@@ -12,7 +12,7 @@
  *    ]
  *
  */
-class PriceQuery
+class SearchCar_PriceQuery
 {
     const LIMIT = 5;
 

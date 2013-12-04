@@ -3,7 +3,7 @@
 /**
  * Validates the XML schema of SearchCarRQ XML.
  */
-class SearchCarRequestValidator
+class SearchCar_RequestValidator
 {
     private $validator;
     private $schema;

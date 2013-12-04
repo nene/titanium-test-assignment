@@ -1,6 +1,6 @@
 <?php
-set_include_path(dirname(dirname(__FILE__)) . '/lib');
-require_once 'SearchCarRequestValidator.php';
+set_include_path(dirname(dirname(dirname(__FILE__))) . '/lib');
+require_once 'SearchCar/RequestValidator.php';
 require_once 'XmlValidator.php';
 require_once 'XmlValidatorException.php';
 
@@ -10,7 +10,7 @@ require_once 'XmlValidatorException.php';
  * the real XmlValidator instance.  So it's technically an integration
  * test.
  */
-class SearchCarRequestValidatorTest extends PHPUnit_Framework_TestCase
+class SearchCar_RequestValidatorTest extends PHPUnit_Framework_TestCase
 {
 
     function validate($xml)
@@ -18,7 +18,7 @@ class SearchCarRequestValidatorTest extends PHPUnit_Framework_TestCase
         $xmlElement = new SimpleXMLElement($xml);
         $validator = new XmlValidator();
 
-        return (new SearchCarRequestValidator($validator))->validate($xmlElement);
+        return (new SearchCar_RequestValidator($validator))->validate($xmlElement);
     }
 
     // one happy path
